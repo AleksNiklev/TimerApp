@@ -1,0 +1,128 @@
+@font-face {
+    font-family: 'digital-clock-font';
+    src: url('./digital-7.ttf');
+}
+
+html {
+    background-color: rgba(0, 0, 0, 0.9);
+    user-select: none;
+}
+
+#container {
+    margin: 2%;
+    color: lightgoldenrodyellow;
+    font-family: 'digital-clock-font';
+    text-align: center;
+    vertical-align: middle;
+}
+
+#timer {
+    text-align: center;
+    width: 80%;
+    margin: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-family: 'digital-clock-font';
+    font-size: 20vw;
+}
+
+#timer #hours {
+    color: blue;
+}
+
+.prep {
+    color: yellow;
+}
+
+.work {
+    color: red;
+}
+
+.rest {
+    color: green;
+}
+
+.timer-option {
+    display: block;
+    text-align: center;
+    font-size: 2vw;
+    padding: 2% 5%;
+    margin: 2%;
+}
+
+.spinner {
+    margin: 2px;
+    display: inline-block;
+    width: 10%;
+    border: 0.2vh solid gray;
+    border-radius: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.spinners p {
+    font-size: 4vh;
+    margin: 0.1%;
+}
+
+.spinners-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinners span {
+    font-size: 10vh;
+}
+
+.spinner>input[type=number]::-webkit-inner-spin-button,
+.spinner>input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    pointer-events: none;
+    margin: 0;
+}
+
+.start-button {
+    text-align: center;
+    margin: 2vh;
+    padding: 2vh;
+    font-size: 4vh;
+    border: 1px solid gray;
+    font-weight: bold;
+    background-color: dimgray;
+    color: lightgoldenrodyellow;
+    border-radius: 1%;
+    box-shadow: inset 0vh 0vh 1.2vh rgb(83, 83, 83);
+}
+
+.start-button:active {
+    box-shadow: inset 0vh 0vh 1.5vh rgb(182, 182, 182);
+}
+
+.spinner-button {
+    text-align: center;
+    font-size: 4vh;
+    border: 0 0 0 1px solid gray;
+    font-weight: bold;
+    background-color: dimgray;
+    color: lightgoldenrodyellow;
+    border-radius: 1%;
+    box-shadow: inset 0vh 0vh 1.2vh rgb(83, 83, 83);
+}
+
+.spinner-button:active {
+    box-shadow: inset 0vh 0vh 1vh rgb(182, 182, 182);
+    font-size: 3.5vh;
+    padding: 0.21vh;
+}
+
+.spinner>input[type=number] {
+    width: -webkit-fill-available;
+    border: none;
+    padding: 0.1vh;
+    text-align: center;
+    font-size: 4vh;
+    font-weight: bold;
+    background-color: dimgray;
+    color: lightgoldenrodyellow;
+    box-shadow: inset 0.01vh 0.01vh 0.1vh rgba(0, 0, 0, 0.7);
+}
