@@ -9,7 +9,7 @@ html {
 }
 
 #container {
-    margin: 2%;
+    margin: 2vh;
     color: lightgoldenrodyellow;
     font-family: 'digital-clock-font';
     text-align: center;
@@ -18,12 +18,12 @@ html {
 
 #timer {
     text-align: center;
-    width: 80%;
-    margin: 2%;
-    padding-left: 5%;
-    padding-right: 5%;
+    width: 80vw;
+    margin: 2vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
     font-family: 'digital-clock-font';
-    font-size: 20vw;
+    font-size: 20vh;
 }
 
 #timer #hours {
@@ -46,22 +46,22 @@ html {
     display: block;
     text-align: center;
     font-size: 2vw;
-    padding: 2% 5%;
-    margin: 2%;
+    padding: 2vh 5vh;
+    margin: 2vh;
 }
 
 .spinner {
-    margin: 2px;
+    margin: 0.3vh;
     display: inline-block;
-    width: 10%;
+    width: 12vw;
     border: 0.2vh solid gray;
-    border-radius: 2%;
+    border-radius: 1vh;
     background-color: rgba(0, 0, 0, 0.7);
 }
 
 .spinners p {
     font-size: 4vh;
-    margin: 0.1%;
+    margin: 3vh 0.1vh 0.1vh 0.1vh;
 }
 
 .spinners-wrapper {
@@ -83,14 +83,14 @@ html {
 
 .start-button {
     text-align: center;
-    margin: 2vh;
+    margin: 6vh 0.1vh 0.1vh 0.1vh;
     padding: 2vh;
-    font-size: 4vh;
+    font-size: 3.5vh;
     border: 1px solid gray;
     font-weight: bold;
     background-color: dimgray;
     color: lightgoldenrodyellow;
-    border-radius: 1%;
+    border-radius: 1vh;
     box-shadow: inset 0vh 0vh 1.2vh rgb(83, 83, 83);
 }
 
@@ -100,19 +100,27 @@ html {
 
 .spinner-button {
     text-align: center;
-    font-size: 4vh;
-    border: 0 0 0 1px solid gray;
+    font-size: 3.5vh;
     font-weight: bold;
     background-color: dimgray;
     color: lightgoldenrodyellow;
-    border-radius: 1%;
     box-shadow: inset 0vh 0vh 1.2vh rgb(83, 83, 83);
 }
 
 .spinner-button:active {
-    box-shadow: inset 0vh 0vh 1vh rgb(182, 182, 182);
-    font-size: 3.5vh;
-    padding: 0.21vh;
+    box-shadow: inset 0vh 0vh 1.2vh rgb(182, 182, 182);
+    font-size: 3vh;
+    padding: 0.278vh;
+}
+
+.spinner-up {
+    border-top-left-radius: 0.8vh;
+    border-top-right-radius: 0.8vh;
+}
+
+.spinner-down {
+    border-bottom-left-radius: 0.8vh;
+    border-bottom-right-radius: 0.8vh;
 }
 
 .spinner>input[type=number] {
@@ -120,7 +128,7 @@ html {
     border: none;
     padding: 0.1vh;
     text-align: center;
-    font-size: 4vh;
+    font-size: 3.5vh;
     font-weight: bold;
     background-color: dimgray;
     color: lightgoldenrodyellow;
