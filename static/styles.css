@@ -4,12 +4,28 @@
 }
 
 html {
+    margin: 0;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.9);
     user-select: none;
+    background: url('./backgroud.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#filder-div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 #container {
-    margin: 2vh;
+    margin-top: 2vh;
     color: lightgoldenrodyellow;
     font-family: 'digital-clock-font';
     text-align: center;
@@ -18,8 +34,6 @@ html {
 
 #timer {
     text-align: center;
-    width: 80vw;
-    margin: 10vw;
     font-family: 'digital-clock-font';
     font-size: 22vw;
 }
@@ -58,6 +72,7 @@ html {
 }
 
 .spinners p {
+    padding-bottom: 1vh;
     font-size: 4vh;
     margin: 3vh 0.1vh 0.1vh 0.1vh;
 }
@@ -80,10 +95,11 @@ html {
 }
 
 .start-button {
+    padding: 1vh;
     text-align: center;
-    margin: 6vh 0.8vh 0.8vh 0.8vh;
-    padding: 2vh;
-    font-size: 6vw;
+    margin: 5vh 0.8vh 0.8vh 0.8vh;
+    padding: 2vh 6vw;
+    font-size: 4vw;
     border: 1px solid gray;
     font-weight: bold;
     background-color: dimgray;
@@ -107,8 +123,6 @@ html {
 
 .spinner-button:active {
     box-shadow: inset 0vh 0vh 1.2vh rgb(182, 182, 182);
-    font-size: 3vh;
-    padding: 0.278vh;
 }
 
 .spinner-up {
