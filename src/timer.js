@@ -12,6 +12,7 @@ let renderTimer = (hours, minutes, seconds, className) => {
 
 let renderTimerSection = () => {
     var div = document.createElement('div');
+    div.classList.add('timer')
     hoursElement = document.createElement("span");
     hoursElement.id = 'hours';
     hoursElement.classList.add('work')
@@ -31,12 +32,6 @@ let renderTimerSection = () => {
 
     return div;
 }
-
-let timerHtml = `<div>
-    <span id="hours">00:</span>
-    <span id="minutes" class="work">00:</span>
-    <span id="seconds" class="work">00</span>
-</div>`;
 
 export {
     renderTimer,

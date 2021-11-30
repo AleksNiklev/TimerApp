@@ -15,33 +15,20 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    text-align: center;
+    font-family: 'digital-clock-font';
+    color: lightgoldenrodyellow;
 }
 
-#filder-div {
+#app {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.8);
-}
-
-#container {
-    margin-top: 2vh;
-    color: lightgoldenrodyellow;
-    font-family: 'digital-clock-font';
-    text-align: center;
-    vertical-align: middle;
-}
-
-#timer {
-    text-align: center;
-    font-family: 'digital-clock-font';
-    font-size: 22vw;
-}
-
-#timer #hours {
-    color: blue;
+    margin: auto;
+    padding: 2vmin;
 }
 
 .prep {
@@ -56,18 +43,16 @@ html {
     color: green;
 }
 
-.timer-option {
-    display: block;
-    text-align: center;
-    font-size: 2vh;
-    padding: 2vh 5vh;
-    margin: 2vh;
+.spinners-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .spinner {
     margin: 0.3vh;
     display: inline-block;
-    width: 12vw;
+    width: 18vw;
     border: 0.2vh solid gray;
     border-radius: 1vh;
     background-color: rgba(0, 0, 0, 0.7);
@@ -75,14 +60,9 @@ html {
 
 .spinners p {
     padding-bottom: 1vh;
+    padding-top: 1vh;
     font-size: 4vh;
-    margin: 3vh 0.1vh 0.1vh 0.1vh;
-}
-
-.spinners-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0.1vh;
 }
 
 .spinners span {
@@ -96,28 +76,9 @@ html {
     margin: 0;
 }
 
-.start-button {
-    padding: 1vh;
-    text-align: center;
-    margin: 5vh 0.8vh 0.8vh 0.8vh;
-    padding: 2vh 6vw;
-    font-size: 4vw;
-    border: 1px solid gray;
-    font-weight: bold;
-    background-color: dimgray;
-    color: lightgoldenrodyellow;
-    border-radius: 1vh;
-    box-shadow: inset 0vh 0vh 1.2vh rgb(83, 83, 83);
-}
-
-.start-button:active {
-    box-shadow: inset 0vh 0vh 1.5vh rgb(182, 182, 182);
-}
-
 .spinner-button {
     text-align: center;
-    font-size: 3.5vh;
-    font-weight: bold;
+    font-size: 4vh;
     background-color: dimgray;
     color: lightgoldenrodyellow;
     box-shadow: inset 0vh 0vh 1.2vh rgb(83, 83, 83);
@@ -138,13 +99,55 @@ html {
 }
 
 .spinner>input[type=number] {
+    font-family: 'digital-clock-font';
     width: -webkit-fill-available;
     border: none;
     padding: 0.1vh;
     text-align: center;
-    font-size: 3.5vh;
+    font-size: 4vh;
     font-weight: bold;
     background-color: dimgray;
     color: lightgoldenrodyellow;
     box-shadow: inset 0.01vh 0.01vh 0.1vh rgba(0, 0, 0, 0.7);
+}
+
+.start-button {
+    font-family: 'digital-clock-font';
+    text-align: center;
+    margin: 4vh 0.8vh 0.8vh 0.8vh;
+    padding: 2vh 10vw;
+    font-size: 5vw;
+    border: 1px solid gray;
+    font-weight: bold;
+    background-color: dimgray;
+    color: lightgoldenrodyellow;
+    border-radius: 1vh;
+    box-shadow: inset 0vh 0vh 1.2vh rgb(83, 83, 83);
+}
+
+.start-button:active {
+    box-shadow: inset 0vh 0vh 1.5vh rgb(182, 182, 182);
+}
+
+.timer-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.butons-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer {
+    text-align: center;
+    font-family: 'digital-clock-font';
+    font-size: 22vw;
+}
+
+.timer #hours {
+    color: dodgerblue;
 }

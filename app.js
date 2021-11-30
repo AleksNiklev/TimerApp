@@ -3,8 +3,7 @@ import { renderSettingsSection, renderRoundsSection, renderStartButton } from ".
 
 const startSound = new Audio('./static/BoxingBell.mp3');
 const singleBellSound = new Audio('./static/SingleBell.mp3');
-let setupElement = document.getElementById("container");
-let timerElement = document.getElementById("timer");
+let appElement = document.getElementById("app");
 let interval;
 let isPaused = false;
 
@@ -17,8 +16,7 @@ async function main() {
 
 
 function renderSetupSection() {
-    clearSetupSection();
-    clearTimerSection();
+    clearSection();
     var prepareSecton = renderSettingsSection("PREPARE", 1);
     var workSecton = renderSettingsSection("WORK", 2);
     var restSecton = renderSettingsSection("REST", 1);
@@ -34,11 +32,11 @@ function renderSetupSection() {
         startWorkout(prepTime, workTime, restTime, rounds);
     });
 
-    setupElement.appendChild(prepareSecton.div);
-    setupElement.appendChild(workSecton.div);
-    setupElement.appendChild(restSecton.div);
-    setupElement.appendChild(roundsSecton.div);
-    setupElement.appendChild(startButton);
+    appElement.appendChild(prepareSecton.div);
+    appElement.appendChild(workSecton.div);
+    appElement.appendChild(restSecton.div);
+    appElement.appendChild(roundsSecton.div);
+    appElement.appendChild(startButton);
 }
 
 function getTime(minutes, seconds) {
@@ -46,7 +44,7 @@ function getTime(minutes, seconds) {
 }
 
 function renderStartWorkout() {
-    clearSetupSection();
+    clearSection();
     var backButton = renderStartButton('BACK', () => {
         clearInterval(interval);
         renderSetupSection();
@@ -59,10 +57,17 @@ function renderStartWorkout() {
     });
 
 
-    timerElement.append(renderTimerSection());
-    timerElement.append(backButton);
-    timerElement.append(pauseButton);
 
+    var div = document.createElement('div');
+    var butonsWrapper = document.createElement('div');
+    div.classList.add("timer-wrapper")
+    butonsWrapper.classList.add("butons-wrapper")
+    div.append(renderTimerSection());
+    butonsWrapper.append(pauseButton);
+    butonsWrapper.append(backButton);
+    div.append(butonsWrapper);
+
+    appElement.append(div);
 }
 
 async function startWorkout(preprTime, workTime, restTime, rounds) {
@@ -130,11 +135,8 @@ function startTimer(timer, rounds, className, playSound) {
     })
 }
 
-let clearSetupSection = () => {
-    setupElement.innerHTML = '';
-}
-let clearTimerSection = () => {
-    timerElement.innerHTML = '';
+let clearSection = () => {
+    appElement.innerHTML = '';
 }
 
 function clock() {
