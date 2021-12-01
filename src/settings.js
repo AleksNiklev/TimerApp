@@ -1,6 +1,6 @@
 import { renderSpinner } from "./spinner.js";
 
-let renderSettingsSection = (label, value = 0) => {
+let renderSettingsSection = (label, { minutes = 0, seconds = 0 }) => {
     let div = document.createElement('div');
     div.classList.add('spinners');
 
@@ -13,10 +13,10 @@ let renderSettingsSection = (label, value = 0) => {
     let span = document.createElement('span');
     span.innerText = ':'
 
-    var divMinute1 = renderSpinner();
-    var divMinute2 = renderSpinner();
-    var divSecond1 = renderSpinner(value);
-    var divSecond2 = renderSpinner();
+    var divMinute1 = minutes > 9 ? renderSpinner(minutes.toString()[0]) : renderSpinner();
+    var divMinute2 = minutes > 9 ? renderSpinner(minutes.toString()[1]) : renderSpinner(minutes.toString()[0]);
+    var divSecond1 = seconds > 9 ? renderSpinner(seconds.toString()[0]) : renderSpinner();
+    var divSecond2 = seconds > 9 ? renderSpinner(seconds.toString()[1]) : renderSpinner(seconds.toString()[0]);
     wrapper.appendChild(divMinute1);
     wrapper.appendChild(divMinute2);
     wrapper.appendChild(span);
@@ -40,7 +40,7 @@ let renderSettingsSection = (label, value = 0) => {
     }
 }
 
-let renderRoundsSection = (label) => {
+let renderRoundsSection = (label, value) => {
     let div = document.createElement('div');
     div.classList.add('spinners');
 
@@ -54,7 +54,7 @@ let renderRoundsSection = (label) => {
     span.innerText = ':'
 
     var divRound1 = renderSpinner();
-    var divRound2 = renderSpinner(1, 1);
+    var divRound2 = renderSpinner(value, 1);
     wrapper.appendChild(divRound1);
     wrapper.appendChild(divRound2);
 

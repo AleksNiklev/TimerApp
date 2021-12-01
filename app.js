@@ -6,27 +6,31 @@ const singleBellSound = new Audio('./static/SingleBell.mp3');
 let appElement = document.getElementById("app");
 let interval;
 let isPaused = false;
+let prepTime = 10;
+let workTime = 20;
+let restTime = 10;
+let rounds = 8;
+
 
 async function main() {
-
-    singleBellSound.load();
     startSound.load();
+    singleBellSound.load();
     renderSetupSection()
 }
 
 
 function renderSetupSection() {
     clearSection();
-    var prepareSecton = renderSettingsSection("PREPARE", 1);
-    var workSecton = renderSettingsSection("WORK", 2);
-    var restSecton = renderSettingsSection("REST", 1);
-    var roundsSecton = renderRoundsSection("ROUNDS");
+    var prepareSecton = renderSettingsSection("PREPARE", getMinutesAndSeconds(prepTime));
+    var workSecton = renderSettingsSection("WORK", getMinutesAndSeconds(workTime));
+    var restSecton = renderSettingsSection("REST", getMinutesAndSeconds(restTime));
+    var roundsSecton = renderRoundsSection("ROUNDS", rounds);
     var startButton = renderStartButton('START WORKOUT', () => {
 
-        let prepTime = getTime(+`${prepareSecton.inputMinute1.value}${prepareSecton.inputMinute2.value}`, +`${prepareSecton.inputSecond1.value}${prepareSecton.inputSecond2.value}`);
-        let workTime = getTime(+`${workSecton.inputMinute1.value}${workSecton.inputMinute2.value}`, +`${workSecton.inputSecond1.value}${workSecton.inputSecond2.value}`);
-        let restTime = getTime(+`${restSecton.inputMinute1.value}${restSecton.inputMinute2.value}`, +`${restSecton.inputSecond1.value}${restSecton.inputSecond2.value}`);
-        let rounds = +`${roundsSecton.inputRound1.value}${roundsSecton.inputRound2.value}`;
+        prepTime = getTime(+`${prepareSecton.inputMinute1.value}${prepareSecton.inputMinute2.value}`, +`${prepareSecton.inputSecond1.value}${prepareSecton.inputSecond2.value}`);
+        workTime = getTime(+`${workSecton.inputMinute1.value}${workSecton.inputMinute2.value}`, +`${workSecton.inputSecond1.value}${workSecton.inputSecond2.value}`);
+        restTime = getTime(+`${restSecton.inputMinute1.value}${restSecton.inputMinute2.value}`, +`${restSecton.inputSecond1.value}${restSecton.inputSecond2.value}`);
+        rounds = +`${roundsSecton.inputRound1.value}${roundsSecton.inputRound2.value}`;
         isPaused = false;
         renderStartWorkout();
         startWorkout(prepTime, workTime, restTime, rounds);
@@ -48,8 +52,6 @@ function renderStartWorkout() {
     var backButton = renderStartButton('BACK', () => {
         clearInterval(interval);
         renderSetupSection();
-
-
     });
     var pauseButton = renderStartButton('PAUSE', () => {
         isPaused = !isPaused;
@@ -72,67 +74,91 @@ function renderStartWorkout() {
 
 async function startWorkout(preprTime, workTime, restTime, rounds) {
     let round = 1;
-    await startPrep(preprTime, rounds);
+    await startPrep(preprTime, round, rounds);
     while (round <= rounds) {
-        await startWork(workTime, round);
+        await startWork(workTime, round, rounds);
         if (round < rounds) {
-            await startRest(restTime, round);
+            await startRest(restTime, round, rounds);
         }
         round++;
     }
 
 }
 
-function playStartSound(time) {
-    if (!time) {
-        startSound.load();
-        startSound.play();
-    }
+function playSound(sound) {
+    sound.currentTime = 0;
+    sound.play();
 }
 
-function playSingleBell(time) {
+function playPrepBell(time, initialTime) {
     if (time === 3 || time === 2 || time === 1) {
-        singleBellSound.load();
-        singleBellSound.play();
-    } else if (!time) {
-        startSound.load();
-        startSound.play();
+        playSound(singleBellSound);
     }
 }
 
-async function startPrep(prep, rounds) {
-    await startTimer(prep, rounds, 'prep', playSingleBell);
+function playWorkSound(time, initialTime) {
+    if (time == initialTime || time === 0) {
+        playSound(startSound);
+    }
 }
 
-async function startWork(work, rounds) {
-    await startTimer(work, rounds, 'work', playStartSound)
+function playRestBell(time, initialTime) {
+    if (time === 3 || time === 2 || time === 1) {
+        playSound(singleBellSound);
+    } else if (time == initialTime) {
+        playSound(startSound);
+    }
 }
 
-async function startRest(rest, rounds) {
-    await startTimer(rest, rounds, 'rest', playSingleBell);
+async function startPrep(prep, round, rounds) {
+    await startTimer(prep, round, rounds, 'prep', playPrepBell);
 }
 
-function startTimer(timer, rounds, className, playSound) {
+async function startWork(work, round, rounds) {
+    await startTimer(work, round, rounds, 'work', playWorkSound)
+}
+
+async function startRest(rest, round, rounds) {
+    await startTimer(rest, round, rounds, 'rest', playRestBell);
+}
+
+function startTimer(timer, round, rounds, className, playSound) {
+    let initialTime = +timer;
     return new Promise((resolve, reject) => {
         interval = setInterval(function() {
             if (!isPaused) {
-                playSound(+timer);
-                let minutes = parseInt(timer / 60, 10);
-                let seconds = parseInt(timer % 60, 10);
+                playSound(+timer, initialTime);
+                var { minutes, seconds } = getMinutesAndSeconds(timer);
 
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                renderTimer(rounds, minutes, seconds, className)
+                renderTimer(round, minutes, seconds, className)
 
-                if (--timer < 0) {
+                if (className === 'work') {
+                    if (round === rounds) {
+                        if (--timer < 0) {
+                            clearInterval(interval)
+                            resolve();
+                        }
+                    } else if (--timer <= 0) {
+                        clearInterval(interval)
+                        resolve();
+                    }
+                } else if (--timer <= 0) {
                     clearInterval(interval)
                     resolve();
                 }
-
             }
         }, 1000);
     })
+}
+
+function getMinutesAndSeconds(time) {
+    return {
+        minutes: parseInt(time / 60, 10),
+        seconds: parseInt(time % 60, 10)
+    }
 }
 
 let clearSection = () => {

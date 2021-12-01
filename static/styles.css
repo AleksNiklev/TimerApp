@@ -5,6 +5,13 @@
     font-display: fallback;
 } */
 
+@font-face {
+    font-family: 'E1234';
+    src: url('./Orloj-Ea9eW.otf');
+    font-style: normal;
+    font-display: fallback;
+}
+
 html {
     margin: 0;
     height: 100%;
@@ -144,7 +151,8 @@ html {
 
 .timer {
     text-align: center;
-    font-family: 'Orbitron';
+    font-family: 'E1234';
+    font-variant-ligatures: none;
     font-size: 18vw;
 }
 
