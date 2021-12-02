@@ -59,7 +59,7 @@ html {
 .spinner {
     margin: 0.3vh;
     display: inline-block;
-    width: 18vw;
+    width: 18vmin;
     border: 0.2vh solid gray;
     border-radius: 1vh;
     background-color: rgba(0, 0, 0, 0.7);
@@ -123,7 +123,7 @@ html {
     text-align: center;
     margin: 4vh 0.8vh 0.8vh 0.8vh;
     padding: 2vh 10vw;
-    font-size: 4vw;
+    font-size: 4vmin;
     border: 1px solid gray;
     font-weight: bold;
     background-color: dimgray;
